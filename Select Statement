@@ -1,0 +1,76 @@
+SELECT *
+FROM Person.Password;
+ 
+SELECT *
+FROM Person.Person;
+ 
+SELECT BusinessEntityID, FirstName, MiddleName, LastName
+FROM Person.Person;
+ 
+SELECT FirstName, MiddleName, LastName, BusinessEntityID
+FROM Person.Person;
+ 
+SELECT FirstName
+FROM Person.Person;
+ 
+SELECT 'FirstName'
+FROM Person.Person;
+
+SELECT JobTitle
+FROM HumanResources.Employee;
+ 
+SELECT DISTINCT JobTitle
+FROM HumanResources.Employee;
+ 
+SELECT OrganizationLevel
+FROM HumanResources.Employee;
+ 
+SELECT DISTINCT OrganizationLevel
+FROM HumanResources.Employee;
+ 
+SELECT *
+FROM Person.Person;
+ 
+SELECT Title, Suffix
+FROM Person.Person;
+ 
+SELECT DISTINCT Title, Suffix
+FROM Person.Person;
+
+SELECT NationalIDNumber, HireDate, VacationHours
+FROM HumanResources.Employee;
+ 
+SELECT NationalIDNumber, HireDate, VacationHours,
+--FROM HumanResources.Employee;
+CASE
+WHEN VacationHours > 70 THEN 'Vacation hours over limit'
+ELSE 'Vacation Hours within limit'
+END AS VacationHourLimit
+FROM HumanResources.Employee;
+ 
+SELECT NationalIDNumber, HireDate, VacationHours,
+--FROM HumanResources.Employee;
+CASE
+WHEN VacationHours > 70 THEN 'Vacation hours over limit'
+WHEN VacationHours BETWEEN 40 AND 70 THEN 'Vacation hours average'
+ELSE 'Vacation Hours within limit'
+END AS VacationHourLimit
+FROM HumanResources.Employee;
+ 
+SELECT NationalIDNumber, HireDate, VacationHours,
+--FROM HumanResources.Employee;
+CASE
+WHEN VacationHours > 70 THEN 'Vacation hours over limit'
+WHEN VacationHours BETWEEN 48 AND 70 THEN 'Vacation hours average'
+ELSE 'Vacation Hours within limit'
+END AS VacationHourLimit
+FROM HumanResources.Employee;
+ 
+SELECT NationalIDNumber, HireDate, VacationHours,
+--FROM HumanResources.Employee;
+CASE
+WHEN VacationHours > 70 THEN 'Vacation hours over limit'
+WHEN VacationHours BETWEEN 48 AND 61 THEN 'Vacation hours average'
+ELSE 'Vacation Hours within limit'
+END AS VacationHourLimit
+FROM HumanResources.Employee;
