@@ -1,0 +1,66 @@
+--CHARINDEX(sutStr, mainstring, startposition)
+
+SELECT CHARINDEX('D', 'DAD');
+SELECT CHARINDEX('D', 'DAD', 2);
+
+SELECT Name, CHARINDEX('Cr', Name)
+FROM Production.Product
+WHERE Name LIKE '%Cr%';
+
+
+SELECT FirstName, DATALENGTH(FirstName) AS NumberOfBytes
+from Person.Person
+Group by FirstName;
+
+SELECT FORMAT(20200616, '####/##/##');
+
+SELECT FirstName, LEFT(FirstName, 2) AS ExtractNameFromLeft
+from Person.Person;
+
+SELECT FirstName, Right(FirstName, 2) AS ExtractNameFromRight
+from Person.Person;
+
+SELECT FirstName, LEN(FirstName) AS ExtractLengthOfName
+from Person.Person;
+
+SELECT FirstName, LOWER(FirstName) AS LowerFName
+From Person.Person;
+
+SELECT FirstName, UPPER(FirstName) AS UpperFName
+From Person.Person;
+
+SELECT LTRIM('        Trim Left Side');
+
+SELECT RtRIM('Trim Right Side        ');
+
+SELECT TRIM('       Trim Both The Sides      ');
+
+SELECT Name, PATINDEX('%Ball%', Name)
+FROM Production.Product
+WHERE Name LIKE '%Ball%';
+
+SELECT Name, PATINDEX('%Cr_nk%', Name)
+FROM Production.Product
+WHERE Name LIKE '%Cr%';
+
+SELECT LoginID, REPLACE(LoginID, 'adventure-works', 'aw') AS ReplaceString
+FROM HumanResources.Employee;
+
+--REPLICATE(String, NumberOFCount)
+
+SELECT FirstName, REPLICATE(FirstName, 2) As REplicateFName
+From Person.Person;
+
+SELECT FirstName, REVERSE(FirstName) AS ReverFName
+From Person.Person;
+
+--SUBSTRING(MainString, StartingPosition, Length);
+
+SELECT TOP 100 LastName, SubString(LastName, 3, 5) AS ReverFName
+From Person.Person
+ORDER BY LastName;
+
+SELECT ProductID, STR(ProductID)
+From Production.Product;
+
+
