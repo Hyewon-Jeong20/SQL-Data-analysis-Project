@@ -1,0 +1,239 @@
+SELECT *
+FROM HumanResources.Employee;
+ 
+SELECT BusinessEntityID, NationalIDNumber, BirthDate, MaritalStatus
+FROM HumanResources.Employee
+WHERE MaritalStatus = 'S';
+ 
+SELECT BusinessEntityID, NationalIDNumber, BirthDate
+FROM HumanResources.Employee
+WHERE BirthDate > '1985-01-20';
+ 
+SELECT BusinessEntityID, NationalIDNumber, BirthDate
+FROM HumanResources.Employee
+WHERE year(BirthDate) > '1985';
+ 
+SELECT BusinessEntityID, NationalIDNumber, BirthDate
+FROM HumanResources.Employee
+WHERE year(BirthDate) = '1985';
+
+SELECT StateProvinceID, CountryRegionCode
+FROM Person. StateProvince
+WHERE CountryRegionCode <> 'US';
+ 
+SELECT StateProvinceID, CountryRegionCode
+FROM Person. StateProvince
+WHERE CountryRegionCode != 'US';
+ 
+SELECT StateProvinceCode, CountryRegionCode
+FROM Person. StateProvince
+WHERE StateProvinceCode <> CountryRegionCode;
+ 
+SELECT StateProvinceID, StateProvinceCode, CountryRegionCode
+FROM Person. StateProvince
+WHERE StateProvinceID >= 30;
+ 
+SELECT StateProvinceID, StateProvinceCode, CountryRegionCode
+FROM Person. StateProvince
+WHERE StateProvinceID <= 30;
+ 
+SELECT StateProvinceID, StateProvinceCode, CountryRegionCode
+FROM Person. StateProvince
+WHERE StateProvinceID < 30;
+ 
+SELECT StateProvinceID, StateProvinceCode, CountryRegionCode
+FROM Person. StateProvince
+WHERE StateProvinceID <> 30;
+ 
+SELECT StateProvinceID, StateProvinceCode, CountryRegionCode
+FROM Person. StateProvince
+WHERE StateProvinceID != 30;
+
+SELECT *
+FROM Production.Product;
+ 
+SELECT StandardCost, ListPrice, StandardCost + ListPrice AS SumListPriceCost
+FROM Production.Product
+WHERE SumListPriceCost > 0;
+ 
+SELECT StandardCost, ListPrice, StandardCost + ListPrice AS SumListPriceCost
+FROM Production.Product
+WHERE StandardCost + ListPrice > 0;
+ 
+SELECT StandardCost, ListPrice
+FROM Production.Product
+WHERE StandardCost + ListPrice > 0;
+ 
+SELECT ProductID, Name, ReorderPoint, StandardCost
+FROM Production.Product
+WHERE ListPrice - StandardCost  > 10;
+ 
+SELECT ProductID, Name, ReorderPoint, StandardCost
+FROM Production.Product
+WHERE ReorderPoint*StandardCost  > 80000;
+ 
+SELECT ProductID, Name, ReorderPoint, StandardCost
+FROM Production.Product
+WHERE ReorderPoint/StandardCost  > 80000;
+ 
+SELECT ProductID, Name, ReorderPoint, StandardCost
+FROM Production.Product
+WHERE ReorderPoint/StandardCost  > 3 AND StandardCost <> 0;
+
+SELECT ProductID, Name, StandardCost, ListPrice, SafetyStockLevel
+FROM Production.Product
+WHERE ProductID < 600 AND StandardCost > 50;
+ 
+SELECT ProductID, Name, StandardCost, ListPrice, SafetyStockLevel
+FROM Production.Product
+WHERE ProductID < 600 AND StandardCost > 50 AND SafetyStockLevel BETWEEN 500 AND 1200;
+ 
+SELECT ProductID, Name, StandardCost, ListPrice, SafetyStockLevel
+FROM Production.Product
+WHERE ProductID < 600 OR StandardCost > 50;
+ 
+SELECT ProductID, Name, StandardCost, ListPrice, SafetyStockLevel
+FROM Production.Product
+WHERE ProductID = 1 OR ProductID = 10 OR ProductID = 15 OR ProductID = 20;
+ 
+SELECT ProductID, Name, StandardCost, ListPrice, SafetyStockLevel
+FROM Production.Product
+WHERE ProductID = 800 OR ProductID < 600 AND StandardCost > 50 AND SafetyStockLevel BETWEEN 500 AND 1200;
+ 
+SELECT ProductID, Name, StandardCost, ListPrice, SafetyStockLevel
+FROM Production.Product
+--WHERE ProductID = 800;
+WHERE (ProductID = 800 OR ProductID < 600) AND StandardCost > 50 AND SafetyStockLevel BETWEEN 500 AND 1200;
+ 
+SELECT ProductID, Name, StandardCost, ListPrice, SafetyStockLevel
+FROM Production.Product
+WHERE ProductID = 800;
+ 
+SELECT ProductID, Name, StandardCost, ListPrice, SafetyStockLevel
+FROM Production.Product
+WHERE (ProductID = 800 OR ProductID < 600) AND StandardCost > 50 AND SafetyStockLevel BETWEEN 500 AND 1200;
+ 
+SELECT ProductID, Name, StandardCost, ListPrice, SafetyStockLevel
+FROM Production.Product
+WHERE NOT ProductID = 4;
+ 
+SELECT ProductID, Name, StandardCost, ListPrice, SafetyStockLevel
+FROM Production.Product
+--WHERE NOT ProductID = 4;
+WHERE Name = 'Adjustable Race';
+ 
+SELECT ProductID, Name, StandardCost, ListPrice, SafetyStockLevel
+FROM Production.Product
+--WHERE NOT ProductID = 4;
+WHERE NOT Name = 'Adjustable Race';
+
+SELECT Title, FirstName, MiddleName, LastName,
+       Title + FirstName + MiddleName + LastName
+FROM Person.Person;
+ 
+SELECT Title, FirstName, MiddleName, LastName,
+       Title + FirstName + MiddleName + LastName AS FullName
+FROM Person.Person;
+ 
+SELECT Title, FirstName, MiddleName, LastName,
+       Title + ' ' + FirstName +  ' ' + MiddleName + ' ' + LastName AS FullName
+FROM Person.Person;
+ 
+SELECT Title, FirstName, MiddleName, LastName,
+       Title + ' ' + FirstName +  ' ' + MiddleName + ' ' + LastName AS FullName
+FROM Person.Person
+WHERE Title + ' ' + FirstName +  ' ' + MiddleName + ' ' + LastName
+      = 'Ms. Gail A Erickson';
+ 
+SELECT StandardCost + ListPrice As Sumabc
+FROM Production.Product;
+ 
+SELECT StandardCost + ListPrice As Sumabc
+FROM Production.Product
+WHERE StandardCost <> 0 OR ListPrice <> 0;
+
+SELECT Title, FirstName, MiddleName, LastName,
+       CONCAT(Title, ' ' , FirstName ,  ' ' , MiddleName , ' ' + LastName)
+	   AS FullName
+FROM Person.Person;
+ 
+SELECT FirstName, BusinessEntityID, CONCAT_WS('.','adventure-works','com')
+       AS domain
+FROM Person.Person;
+ 
+SELECT FirstName, BusinessEntityID, 
+       CONCAT(FirstName, BusinessEntityID,
+	          '@' , CONCAT_WS('.','adventure-works','com')) AS PersonEmail,
+       CONCAT_WS('.','adventure-works','com') AS domain
+FROM Person.Person;
+
+SELECT ProductId, Name, Color
+FROM Production.Product
+WHERE Color IS NULL;
+ 
+SELECT ProductId, Name, Color
+FROM Production.Product
+WHERE Color IS NOT NULL;
+
+SELECT PurchaseOrderId, ModifiedDate
+FROM Purchasing.PurchaseOrderDetail
+WHERE ModifiedDate BETWEEN '20140203'AND '20150812';
+ 
+SELECT PurchaseOrderId, ModifiedDate
+FROM Purchasing.PurchaseOrderDetail
+WHERE ModifiedDate BETWEEN '2014-02-03'AND '2015-08-13';
+ 
+SELECT BusinessEntityID, BirthDate
+FROM HumanResources.Employee;
+ 
+SELECT BusinessEntityID, CAST(BirthDate AS datetime)
+FROM HumanResources.Employee;
+ 
+SELECT BusinessEntityID, CAST(BirthDate AS datetime) AS BirthDateTime
+FROM HumanResources.Employee;
+ 
+SELECT CAST('2020-06-12' AS datetime);
+ 
+SELECT PurchaseOrderId, ModifiedDate
+FROM Purchasing.PurchaseOrderDetail
+WHERE ModifiedDate NOT BETWEEN '2014-02-03'AND '2015-08-13';
+ 
+SELECT PurchaseOrderId, ModifiedDate
+FROM Purchasing.PurchaseOrderDetail
+WHERE ModifiedDate NOT BETWEEN '2014-02-03'AND '2015-08-12';
+
+SELECT PurchaseOrderId, ModifiedDate
+FROM Purchasing.PurchaseOrderDetail
+WHERE ModifiedDate BETWEEN '2014-02-03'AND '2015-08-13';
+ 
+SELECT CAST(1.234 AS INT);
+SELECT CAST(1.834 AS INT);
+ 
+SELECT PurchaseOrderId, ModifiedDate
+FROM Purchasing.PurchaseOrderDetail
+WHERE CAST(ModifiedDate AS DATE) BETWEEN '2014-02-03'AND '2015-08-12';
+
+SELECT ProductID, Name, StandardCost, ListPrice, SafetyStockLevel
+FROM Production.Product
+WHERE ProductID = 1 OR ProductID = 10 
+OR ProductID = 15 OR ProductID = 20;
+ 
+SELECT ProductID, Name, StandardCost, ListPrice, SafetyStockLevel
+FROM Production.Product
+WHERE ProductID IN (1,10,15,20);
+ 
+SELECT *
+FROM Person.StateProvince
+WHERE StateProvinceCode IN ('AK','AZ','CO','MB','IA');
+ 
+SELECT *
+FROM Person.StateProvince
+WHERE StateProvinceCode IN ('AK','AZ','CO','MZ','IA');
+ 
+SELECT *
+FROM Person.StateProvince
+WHERE StateProvinceCode IN ('AK','AZ','CO','ID','IA');
+ 
+SELECT *
+FROM Person.StateProvince
+WHERE StateProvinceCode NOT IN ('AK','AZ','CO','ID','IA');
