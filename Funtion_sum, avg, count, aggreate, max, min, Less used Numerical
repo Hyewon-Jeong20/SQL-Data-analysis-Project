@@ -1,0 +1,86 @@
+SELECT *
+FROM Production.Product;
+ 
+SELECT SUM(StandardCost)
+FROM Production.Product;
+ 
+SELECT SUM(ALL StandardCost)
+FROM Production.Product;
+ 
+SELECT SUM(DISTINCT StandardCost)
+FROM Production.Product;
+
+SELECT MakeFlag, AVG(StandardCost) AS AvgStdCost
+FROM Production.Product
+GROUP BY MakeFlag;
+ 
+SELECT MakeFlag, AVG(ALL StandardCost) AS AvgStdCost
+FROM Production.Product
+GROUP BY MakeFlag;
+ 
+SELECT MakeFlag, AVG(DISTINCT StandardCost) AS AvgStdCost
+FROM Production.Product
+GROUP BY MakeFlag;
+ 
+SELECT COUNT(color)
+FROM Production.Product
+WHERE color IS NOT NULL;
+ 
+SELECT MakeFlag, COUNT(StandardCost) AS CountStdCost
+FROM Production.Product
+GROUP BY MakeFlag;
+ 
+SELECT MakeFlag, COUNT(DISTINCT StandardCost) AS CountStdCost
+FROM Production.Product
+GROUP BY MakeFlag;
+
+SELECT StandardCost
+FROM Production.Product;
+ 
+SELECT MAX(StandardCost) AS MaxStdCost
+FROM Production.Product;
+ 
+SELECT MakeFlag, MAX(StandardCost) AS MaxStdCost
+FROM Production.Product
+GROUP BY MakeFlag;
+ 
+SELECT MakeFlag, MAX(StandardCost) AS MaxStdCost
+FROM Production.Product
+GROUP BY MakeFlag
+ORDER BY MAX(StandardCost);
+ 
+SELECT MIN(StandardCost)
+FROM Production.Product;
+ 
+SELECT MIN(StandardCost)
+FROM Production.Product
+WHERE StandardCost > 0;
+ 
+SELECT MIN(StandardCost) AS MinStdCost
+FROM Production.Product
+WHERE StandardCost > 0;
+
+SELECT ABS(-12345.45);
+ 
+SELECT ABS(+12345.45);
+ 
+SELECT ABS($12345.45);
+ 
+SELECT StandardCost, CEILING(StandardCost)
+FROM Production.Product;
+ 
+SELECT StandardCost, CEILING(StandardCost)
+FROM Production.Product
+WHERE StandardCost > 0;
+ 
+SELECT StandardCost, FLOOR(StandardCost)
+FROM Production.Product
+WHERE StandardCost > 0;
+ 
+SELECT RAND()*5 + 3;
+ 
+SELECT CEILING(RAND()*5 + 3);
+ 
+SELECT ROUND(345.678,2);
+ 
+SELECT ROUND(345.67856,3);
