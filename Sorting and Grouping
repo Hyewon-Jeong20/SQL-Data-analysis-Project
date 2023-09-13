@@ -1,0 +1,192 @@
+SELECT JobCandidateId, ModifiedDate
+FROM HumanResources.JobCandidate;
+ 
+SELECT JobCandidateId, ModifiedDate
+FROM HumanResources.JobCandidate
+ORDER BY ModifiedDate DESC;
+ 
+SELECT JobCandidateId, ModifiedDate
+FROM HumanResources.JobCandidate
+ORDER BY ModifiedDate DESC;
+ 
+SELECT *
+FROM Person.Address
+ORDER BY AddressID
+ 
+SELECT CONCAT(AddressLine1, ' ', AddressLine2, ' ',
+              City, ' ', StateProvinceID, ' ', PostalCode)
+FROM Person.Address
+ORDER BY AddressID;
+ 
+SELECT AddressID, CONCAT(AddressLine1, ' ', AddressLine2, ' ',
+              City, ' ', StateProvinceID, ' ', PostalCode)
+FROM Person.Address
+ORDER BY AddressID;
+ 
+SELECT AddressID, CONCAT(AddressLine1, ' ', AddressLine2, ' ',
+              City, ' ', StateProvinceID, ' ', PostalCode) AS
+			  PostalAddress
+FROM Person.Address
+ORDER BY AddressID;
+ 
+SELECT *
+FROM Production.Product
+ 
+SELECT ProductID, Name, StandardCost, Listprice
+FROM Production.Product
+ORDER BY StandardCost;
+ 
+SELECT ProductID, Name, StandardCost, Listprice
+FROM Production.Product
+ORDER BY StandardCost ASC;
+ 
+SELECT ProductID, Name, StandardCost, Listprice
+FROM Production.Product
+ORDER BY StandardCost ASC, ListPrice DESC;
+--Rec1 - standcost - 100, Listprice - 10
+--Rec2 - standcost - 100, Listprice - 15
+--100, 15
+--100,05
+ 
+SELECT ProductID, Name, StandardCost, Listprice
+FROM Production.Product
+ORDER BY StandardCost DESC, ListPrice DESC;
+ 
+SELECT ProductID, Name, StandardCost, Listprice
+FROM Production.Product
+WHERE StandardCost > 0 AND ListPrice > 0
+ORDER BY StandardCost DESC, ListPrice DESC;
+ 
+SELECT ProductID, Name, StandardCost, Listprice
+FROM Production.Product
+WHERE StandardCost > 0 AND ListPrice > 0
+ORDER BY 4;
+ 
+SELECT ProductID, Name, StandardCost, Listprice
+FROM Production.Product
+WHERE StandardCost > 0 AND ListPrice > 0
+ORDER BY 3 DESC, 4;
+
+SELECT BusinessEntityID, NationalIDNumber, HireDate
+FROM HumanResources.Employee
+ORDER BY BirthDate DESC;
+ 
+SELECT AddressID, AddressLine1
+FROM Person.Address
+ORDER BY LEN(AddressLine1) ASC;
+ 
+SELECT AddressID, AddressLine1, LEN(AddressLine1)
+FROM Person.Address
+ORDER BY LEN(AddressLine1) ASC;
+ 
+SELECT AddressID, AddressLine1, LEN(AddressLine1) AS LengthAddL1
+FROM Person.Address
+ORDER BY LEN(AddressLine1) ASC;
+
+SELECT BusinessEntityID, NationalIDNumber, HireDate
+FROM HumanResources.Employee
+ORDER BY HireDate ASC;
+ 
+SELECT BusinessEntityID, NationalIDNumber, HireDate
+FROM HumanResources.Employee
+ORDER BY HireDate ASC
+OFFSET 5 ROWS
+FETCH NEXT 20 ROWS ONLY;
+ 
+SELECT BusinessEntityID, NationalIDNumber, HireDate
+FROM HumanResources.Employee
+ORDER BY HireDate DESC
+OFFSET 0 ROWS
+FETCH NEXT 5 ROWS ONLY;
+ 
+SELECT TOP 5 BusinessEntityID, NationalIDNumber, HireDate
+FROM HumanResources.Employee
+ORDER BY HireDate DESC;
+
+SELECT TOP 2 JobCandidateID, ModifiedDate
+FROM HumanResources.JobCandidate
+ORDER BY ModifiedDate DESC;
+ 
+SELECT  JobCandidateID, ModifiedDate
+FROM HumanResources.JobCandidate
+ORDER BY ModifiedDate DESC
+OFFSET 0 ROWS
+FETCH NEXT 2 ROWS ONLY;
+ 
+SELECT TOP 2 ProductId, Name, StandardCost
+FROM Production.Product
+ORDER BY StandardCost DESC;
+ 
+SELECT TOP 2 WITH TIES ProductId, Name, StandardCost
+FROM Production.Product
+ORDER BY StandardCost DESC;
+ 
+SELECT TOP 3 SalesOrderID, SalesOrderDetailID, OrderQty
+FROM Sales.SalesOrderDetail
+ORDER BY OrderQty DESC;
+ 
+SELECT TOP 3 WITH TIES SalesOrderID, SalesOrderDetailID, OrderQty
+FROM Sales.SalesOrderDetail
+ORDER BY OrderQty DESC;
+ 
+SELECT  TOP 10 PERCENT SalesOrderID, SalesOrderDetailID, OrderQty
+FROM Sales.SalesOrderDetail
+ORDER BY OrderQty DESC;
+ 
+SELECT  TOP 1 *
+FROM Sales.SalesOrderDetail
+ORDER BY OrderQty DESC;
+
+SELECT SalesOrderID, ORderQty
+FROM Sales.SalesOrderDetail
+ 
+SELECT SalesOrderID, sum(ORderQty)
+FROM Sales.SalesOrderDetail
+GROUP BY SalesOrderID;
+
+SELECT *
+FROM HumanResources.Department;
+ 
+SELECT GroupName
+FROM HumanResources.Department
+GROUP BY GroupName;
+ 
+SELECT GroupName, COUNT(GroupName)
+FROM HumanResources.Department
+GROUP BY GroupName;
+ 
+SELECT GroupName, COUNT(*)
+FROM HumanResources.Department
+GROUP BY GroupName;
+
+SELECT *
+FROM HumanResources.EmployeePayHistory;
+ 
+SELECT PayFrequency, SUM(Rate)
+FROM HumanResources.EmployeePayHistory;
+ 
+SELECT PayFrequency, SUM(Rate) AS TotalRatePerPayFrequency
+FROM HumanResources.EmployeePayHistory
+GROUP BY PayFrequency;
+ 
+SELECT PayFrequency, SUM(Rate) AS TotalRatePerPayFrequency
+FROM HumanResources.EmployeePayHistory
+GROUP BY PayFrequency
+ORDER BY PayFrequency;
+ 
+SELECT PayFrequency, SUM(Rate) AS TotalRatePerPayFrequency
+FROM HumanResources.EmployeePayHistory
+GROUP BY PayFrequency
+ORDER BY PayFrequency DESC;
+ 
+SELECT ProductID, Shelf
+FROM Production.ProductInventory
+ 
+SELECT ProductID, Shelf, SUM(Quantity)
+FROM Production.ProductInventory
+GROUP BY ProductID, Shelf;
+ 
+SELECT ProductID, Shelf, SUM(Quantity) AS SumPerProductPerShelf
+FROM Production.ProductInventory
+GROUP BY ProductID, Shelf
+ORDER BY shelf DESC;
