@@ -1,0 +1,138 @@
+SELECT ProductID, SellStartDate,dateadd(yyyy,3,sellstartdate) AS NewSellStartDate
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,dateadd(q,3,sellstartdate) AS NewSellStartDate
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,dateadd(m,3,sellstartdate) AS NewSellStartDate
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,dateadd(d,3,sellstartdate) AS NewSellStartDate
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,dateadd(hh,3,sellstartdate) AS NewSellStartDate
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,dateadd(n,50,sellstartdate) AS NewSellStartDate
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,dateadd(s,10,sellstartdate) AS NewSellStartDate
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,SellEndDate, dateadd(ms,50,sellstartdate) AS NewSellStartDate
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,SellEndDate, dateadd(m,50,sellstartdate) AS NewSellStartDate
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,SellEndDate, datediff(yyyy,sellstartdate,sellenddate) AS diffDate
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,SellEndDate, datediff(q,sellstartdate,sellenddate) AS diffDate
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,SellEndDate, datediff(q,sellstartdate,sellenddate) AS diffDate
+FROM Production.Product
+WHERE SellEndDate IS NOT NULL;
+
+SELECT ProductID, SellStartDate,datepart(month,sellstartdate) AS Extractmonth
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,day(sellstartdate) AS ExtractDay
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,month(sellstartdate) AS ExtractMonth
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,year(sellstartdate) AS ExtractYear
+FROM Production.Product;
+
+
+SELECT ProductID, SellStartDate,datename(month,sellstartdate) AS Extractmonth
+FROM Production.Product;
+ 
+SELECT ProductID, SellStartDate,eomonth(sellstartdate) AS EndOfMonth
+FROM Production.Product;
+
+SELECT CURRENT_TIMESTAMP;
+SELECT getdate();
+SELECT sysdatetime();
+SELECT SYSDATETIMEOFFSET();
+
+SELECT SellStartDate, isdate(SellStartDate)
+FROM Production.Product;
+ 
+SELECT isdate(1) As booleanValue;
+ 
+SELECT isnull(NULL,'Abc');
+ 
+SELECT isnull('123','Abc');
+ 
+SELECT isnull(NULL,0);
+ 
+SELECT isnull(0,5);
+ 
+SELECT isnull(' ',5);
+ 
+SELECT Color, isnull(Color,'hello') as CheckforNull
+FROM Production.Product;
+ 
+SELECT StandardCost, isnumeric(StandardCost) AS testNumeric
+FROM Production.Product;
+ 
+SELECT Color, isnumeric(Color) AS testNumeric
+FROM Production.Product;
+
+SELECT coalesce(NULL,NULL,'Welcome',NULL,'SQL');
+ 
+SELECT coalesce(NULL,NULL,NULL,NULL,'SQL');
+ 
+SELECT Title, MiddleName, coalesce(title,middlename)
+FROM Person.Person;
+ 
+SELECT NULLIF(14,12);
+ 
+SELECT StandardCost, convert(nvarchar(20),StandardCost) AS convertedType
+FROM Production.Product;
+ 
+SELECT ProductId,StandardCost, ListPrice, 
+ iif(ListPrice>=StandardCost,'Profit','Loss') AS testCondition
+FROM Production.Product
+WHERE Listprice < StandardCost;
+ 
+SELECT ProductId,StandardCost, ListPrice, 
+ iif(ListPrice>=StandardCost,'Profit','Loss') AS testCondition
+FROM Production.Product;
+--WHERE Listprice < StandardCost;
+ 
+SELECT ProductId,StandardCost, ListPrice, 
+ iif(ListPrice<StandardCost,'Profit','Loss') AS testCondition
+FROM Production.Product;
+--WHERE Listprice < StandardCost;
+
+SELECT max(StandardCost)
+FROM Production.Product
+HAVING max(standardCost) > 200;
+ 
+SELECT DueDate,Sum(OrderQty) AS TotalOrderPerDueDate
+FROM Purchasing.PurchaseOrderDetail
+WHERE YEAR(DueDate) > 2011 AND Month(DueDate) < 9
+GROUP BY DueDate
+ORDER BY DueDate DESC;
+ 
+SELECT DueDate,Sum(OrderQty) AS TotalOrderPerDueDate
+FROM Purchasing.PurchaseOrderDetail
+WHERE YEAR(DueDate) > 2011 AND Month(DueDate) < 9 
+GROUP BY DueDate
+HAVING sum(OrderQty) < 6000
+ORDER BY DueDate DESC;
+ 
+SELECT DueDate,Sum(OrderQty) AS TotalOrderPerDueDate
+FROM Purchasing.PurchaseOrderDetail
+--WHERE YEAR(DueDate) > 2011 AND Month(DueDate) < 9 
+GROUP BY DueDate
+HAVING sum(OrderQty) < 6000
+ORDER BY DueDate DESC;
+
+Order of SQL statement : SELECT->FROM->WHERE->GROUP BY->HAVING->ORDERBY
+Order of SQL Engine Server Execution : FROM - > WHERE - >GROUP BY - > HAVING -> SELECT -> ORDER BY
