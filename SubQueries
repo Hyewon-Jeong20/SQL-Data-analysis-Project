@@ -63,3 +63,50 @@ WHERE UnitPrice <
  (SELECT Avg(ListPrice)
   FROM Production.Product
  );
+
+SELECT *
+FROM HumanResources.Employee;
+ 
+SELECT *
+FROM HumanResources.Department;
+ 
+SELECT BusinessEntityId, JobTitle 
+FROM HumanResources.Employee
+WHERE EXISTS
+  (SELECT DepartmentID
+   FROM HumanResources.Department
+   WHERE Name = 'Sales'
+  );
+ 
+SELECT BusinessEntityId, JobTitle 
+FROM HumanResources.Employee
+WHERE EXISTS
+  (SELECT DepartmentID
+   FROM HumanResources.Department
+   WHERE Name = 'Sales'
+  ) AND JobTitle LIKE '%Sales%';
+
+
+SELECT ProductSubCategoryID
+FROM Production.Product
+WHERE ProductSubCategoryID IN
+ (SELECT ProductSubCategoryID
+  FROM Production.ProductSubcategory
+  WHERE ProductCategoryID IN
+   (SELECT ProductCategoryID 
+    FROM Production.ProductCategory
+	WHERE Name LIKE '%Bikes%'
+   )
+  );
+ 
+SELECT DISTINCT ProductSubCategoryID
+FROM Production.Product
+WHERE ProductSubCategoryID IN
+ (SELECT ProductSubCategoryID
+  FROM Production.ProductSubcategory
+  WHERE ProductCategoryID IN
+   (SELECT ProductCategoryID 
+    FROM Production.ProductCategory
+	WHERE Name LIKE '%Bikes%'
+   )
+  );
