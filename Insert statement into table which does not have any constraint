@@ -1,0 +1,49 @@
+INSERT INTO retail.Stores 
+(
+ StoreNumber,
+ PhoneNumber,
+ Email,
+ Address,
+ City,
+ State,
+ ZipCode
+)
+VALUES
+(
+ 'I12345',
+ '+91-9999999999',
+ 'test1@test.com',
+ 'Dummy street123',
+ 'Bangalore',
+ 'Karnataka',
+ 123456
+);
+ 
+SELECT * FROM retail.Stores;
+ 
+INSERT INTO retail.Stores 
+(
+ StoreNumber,
+ Address,
+ City,
+ ZipCode
+)
+VALUES
+(
+ 'S12345',
+ 'Dummy street234',
+ 'Delhi',
+ 234567
+);
+ 
+INSERT INTO retail.Stores 
+VALUES
+(
+ 'I12345',
+ '+91-9999999999',
+ 'test1@test.com',
+ 'Dummy street123',
+ 'Bangalore',
+ 'Karnataka',
+ 123456
+);
