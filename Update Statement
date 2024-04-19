@@ -1,0 +1,23 @@
+SELECT * FROM retail.Stores;
+
+UPDATE retail.Stores
+SET
+StoreNumber = 'I56700'
+WHERE StoreId = 3;
+
+UPDATE retail.Stores
+SET
+Email = 'test2@test.com', Address = 'Dummy Street XYZ'
+WHERE StoreId = 3;
+
+SELECT * FROM retail.ItemStatus;
+
+UPDATE retail.ItemStatus
+SET
+ItemQty = 400
+WHERE ItemId = 6;
+
+UPDATE retail.ItemStatus
+SET
+ItemQty = ItemQty + 1;
+
