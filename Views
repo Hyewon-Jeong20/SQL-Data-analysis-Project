@@ -1,0 +1,44 @@
+SELECT iss.itemId, iss.ItemQty, pd.ProductName, pd.ProductCode, pd.ProductListPrice
+FROM retail.ItemStatus iss
+	INNER JOIN
+retail.ProductDetails pd
+ON iss.itemId = pd.ProductId;
+
+SELECT * FROM retail.ItemStatus;
+
+UPDATE retail.ItemStatus
+SET ItemStatus = NULL
+WHERE ItemID = 3;
+
+
+CREATE VIEW vwMissingItemDetails AS
+SELECT iss.itemId, iss.ItemQty, pd.ProductName, pd.ProductCode, pd.ProductListPrice
+FROM retail.ItemStatus iss
+	INNER JOIN
+retail.ProductDetails pd
+ON iss.itemId = pd.ProductId
+WHERE iss.ItemStatus IS NULL;
+
+SELECT itemId from vwMissingItemDetails;
+SELECT * from vwMissingItemDetails;
+
+DROP VIEW vwMissingItemDetails;
+
+
+CREATE VIEW retail.vwMissingItemDetails AS
+SELECT iss.itemId, iss.ItemQty, pd.ProductName, pd.ProductCode, pd.ProductListPrice
+FROM retail.ItemStatus iss
+	INNER JOIN
+retail.ProductDetails pd
+ON iss.itemId = pd.ProductId
+WHERE iss.ItemStatus IS NULL;
+
+CREATE OR ALTER VIEW retail.vwMissingItemDetails AS
+SELECT iss.itemId, iss.ItemQty, pd.ProductName, pd.ProductCode, pd.ProductListPrice, 
+pd.ProductDescription
+FROM retail.ItemStatus iss
+	INNER JOIN
+retail.ProductDetails pd
+ON iss.itemId = pd.ProductId
+WHERE iss.ItemStatus IS NULL;
+
