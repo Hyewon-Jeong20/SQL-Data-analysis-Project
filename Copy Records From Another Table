@@ -1,0 +1,38 @@
+SELECT * INTO retail.StoreProdsBkp  FROM retail.StoreProds;
+ 
+SELECT * FROM retail.StoreProdsBkp;
+ 
+SELECT * INTO retail.StoreProdsEmpty  FROM retail.StoreProds
+WHERE 1 = 0;
+ 
+SELECT * FROM retail.StoreProdsEmpty;
+ 
+SELECT * INTO retail.StoreProdsBkpValidCond  FROM retail.StoreProds
+WHERE StoreId = 1253;
+ 
+SELECT * FROM retail.StoreProdsBkpValidCond;
+ 
+SELECT iss.ItemId, pd.ProductName INTO retail.NewTableFromMultipleTables
+FROM retail.ItemStatus iss
+ LEFT JOIN
+retail.ProductDetails pd
+ON iss.itemId = pd.ProductID
+ 
+SELECT * FROM retail.NewTableFromMultipleTables;
+ 
+SELECT * INTO retail.Department FROM
+AdventureWorks2019.HumanResources.Department;
+ 
+SELECT * FROM retail.Department;
+
+SELECT * FROM retail.StoreProdsEmpty;
+SELECT * FROM retail.StoreProds;
+SELECT * FROM retail.ProductDetails1;
+ 
+INSERT INTO retail.StoreProdsEmpty SELECT * FROM retail.StoreProds;
+ 
+INSERT INTO retail.ProductDetails1(ProductName, ProductCode,
+ProductStdCost,ProductListPrice)
+SELECT ProductName, ProductCode, ProductStdCost, ProductListPrice
+FROM retail.ProductDetails;
+--WHERE ProductID IN (1,3);
