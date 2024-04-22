@@ -1,0 +1,19 @@
+ALTER TABLE Investors
+ADD InvestorStartDate DATE NOT NULL;
+ 
+ALTER TABLE Investors
+ADD CONSTRAINT UK_Investors_InvestorId_InvestorName UNIQUE (InvestorID, InvestorName);
+ 
+--ALTER TABLE InvestorIssuers
+--ADD PRIMARY KEY (IID);
+ 
+ALTER TABLE InvestorIssuers
+ADD CONSTRAINT PK_InvestorIssuers_InvestorId_IssuerID
+PRIMARY KEY(InvestorId, IssuerId);
+
+ALTER TABLE Investors
+ADD CONSTRAINT DF_Investors_InvestorStatus
+DEFAULT 0 FOR InvestorStatus;
+ 
+ALTER TABLE Investors
+ADD DEFAULT 'General' FOR InvestorName;
