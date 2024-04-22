@@ -1,0 +1,38 @@
+CREATE TABLE Shares
+(
+Id INT IDENTITY NOT NULL,
+ShareId INT PRIMARY KEY,
+ShareName Varchar(50) NOT NULL,
+SharePrice Money NOT NULL,
+ShareIssueDate DATE
+);
+
+CREATE TABLE Investors
+(
+InvestorId INT PRIMARY KEY,
+InvestorName Varchar(50) NOT NULL,
+InvestorStatus BIT 
+);
+
+CREATE TABLE Issuers
+(
+IssuerId INT PRIMARY KEY,
+IssuerName VARCHAR(50) NOT NULL,
+IssuerType Varchar(50) NOT NULL,
+IssuerAddress Varchar(100) NOT NULL,
+IssuerStatus BIT 
+);
+
+CREATE TABLE InvestorIssuers
+(
+IID INT IDENTITY NOT NULL,
+InvestorId INT NOT NULL,
+IssuerId INT NOT NULL,
+IssuerType varchar(50) NOT NULL,
+HoldingId INT NOT NULL,
+HoldingStatus CHAR(3) NOT NULL,
+HoldingNumber INT NOT NULL,
+ParticipantCode varchar(10) Not null,
+FOREIGN KEY (InvestorId) REFERENCES Investors(InvestorId),
+FOREIGN KEY (IssuerId) REFERENCES Issuers(IssuerId)
+);
