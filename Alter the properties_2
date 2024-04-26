@@ -1,0 +1,34 @@
+ALTER TABLE Investors
+ALTER COLUMN InvestorStatus BIT NOT NULL;
+
+SELECT * FROM Investors;
+
+ALTER TABLE Investors
+DROP COLUMN InvestorStartDate;
+
+ALTER TABLE Investors
+DROP CONSTRAINT DF_Investors_InvestorStatus;
+
+ALTER TABLE Investors
+DROP CONSTRAINT UK_Investors_InvestorId_InvestorName;
+
+SP_RENAME 'Issuers.IssuerTypes', 'IssuerType', 'COLUMN';
+SP_RENAME 'Issuers','Issuer';
+SP_RENAME 'Issuer','Issuers';
+
+CREATE TABLE DUMMY
+(c1 INT);
+
+INSERT INTO DUMMY VALUES(5);
+
+DELETE FROM  DUMMY WHERE c1 = 5;
+
+SELECT * FROM DUMMY;
+
+DELETE FROM  DUMMY ;
+
+DROP TABLE DUMMY;
+
+DROP INDEX IDX_CheckItems_ItemName ON CheckItems;
+
+
